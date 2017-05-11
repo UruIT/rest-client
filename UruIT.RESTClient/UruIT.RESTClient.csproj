@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C08614D9-511B-40EB-B1C8-FB2E1D5E3A95}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UruIT.RESTClient</RootNamespace>
+    <AssemblyName>UruIT.RESTClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSharpMonad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\csharp-monad.1.0.1\lib\net45\CSharpMonad.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\BaseRestClient.cs" />
+    <Compile Include="Classes\JsonRestClient.cs" />
+    <Compile Include="Classes\Processors\BoolAsNotFoundProcessor.cs" />
+    <Compile Include="Classes\Processors\ContentDeserializationProcessor.cs" />
+    <Compile Include="Classes\Processors\EitherProcessor.cs" />
+    <Compile Include="Classes\Processors\EitherProcessorExtensions.cs" />
+    <Compile Include="Classes\Processors\EitherResultadoProcessor.cs" />
+    <Compile Include="Classes\Processors\ErrorConverterProcessor.cs" />
+    <Compile Include="Classes\Processors\ErrorProcessor.cs" />
+    <Compile Include="Classes\Processors\ErrorProcessorExtensions.cs" />
+    <Compile Include="Classes\Processors\ExceptionProcessor.cs" />
+    <Compile Include="Classes\Processors\ExceptionProcessorExtensions.cs" />
+    <Compile Include="Classes\Processors\ExceptionResultadoProcessor.cs" />
+    <Compile Include="Classes\Processors\IdentityProcessor.cs" />
+    <Compile Include="Classes\Processors\OptionAsNotFoundProcessor.cs" />
+    <Compile Include="Classes\Processors\SuccessProcessor.cs" />
+    <Compile Include="Classes\Processors\SucessProcessorExtensions.cs" />
+    <Compile Include="Classes\Processors\UnitAsSuccessProcessor.cs" />
+    <Compile Include="Classes\Processors\VoidProcessor.cs" />
+    <Compile Include="Classes\ProcessorStructure.cs" />
+    <Compile Include="Classes\Providers\ErrorResultadoConverterProvider.cs" />
+    <Compile Include="Classes\Providers\ExceptionResultadoProvider.cs" />
+    <Compile Include="Classes\RestClient.cs" />
+    <Compile Include="Classes\RestClientBuilder.cs" />
+    <Compile Include="Classes\RestClientUtilities.cs" />
+    <Compile Include="Classes\RestRequest.cs" />
+    <Compile Include="Classes\RestResponse.cs" />
+    <Compile Include="Classes\RestSharpRestClientExecuter.cs" />
+    <Compile Include="Classes\RestSharpRestResponse.cs" />
+    <Compile Include="Classes\XmlRestClient.cs" />
+    <Compile Include="Entities\RestException.cs" />
+    <Compile Include="Entities\RestBusinessError.cs" />
+    <Compile Include="Entities\ResultadoBase.cs" />
+    <Compile Include="Entities\ResultadoException.cs" />
+    <Compile Include="Entities\RestHttpError.cs" />
+    <Compile Include="Entities\RestErrorType.cs" />
+    <Compile Include="Interfaces\IJsonRestClient.cs" />
+    <Compile Include="Interfaces\IResponseProcessor.cs" />
+    <Compile Include="Interfaces\IRestClient.cs" />
+    <Compile Include="Interfaces\IRestClientExecuter.cs" />
+    <Compile Include="Interfaces\IRestRequest.cs" />
+    <Compile Include="Interfaces\IRestResponse.cs" />
+    <Compile Include="Interfaces\IXmlRestClient.cs" />
+    <Compile Include="Interfaces\Processors\IErrorProcessor.cs" />
+    <Compile Include="Interfaces\Providers\IErrorConverterProvider.cs" />
+    <Compile Include="Interfaces\Providers\IExceptionProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UruIT.Serialization\UruIT.Serialization.csproj">
+      <Project>{0fcbeb13-86f9-42d9-bf41-4c60f0abe53a}</Project>
+      <Name>UruIT.Serialization</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
