@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B53F8F4-E6C2-460D-87D2-A2541FAA67E8}"
+	ProjectSection(SolutionItems) = preProject
+		UruIT.RESTClient.Mocks.nuspec = UruIT.RESTClient.Mocks.nuspec
+		UruIT.RESTClient.nuspec = UruIT.RESTClient.nuspec
+		UruIT.Serialization.Mocks.nuspec = UruIT.Serialization.Mocks.nuspec
+		UruIT.Serialization.nuspec = UruIT.Serialization.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UruIT.Serialization", "src\UruIT.Serialization\UruIT.Serialization.csproj", "{0FCBEB13-86F9-42D9-BF41-4C60F0ABE53A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UruIT.RESTClient", "src\UruIT.RESTClient\UruIT.RESTClient.csproj", "{C08614D9-511B-40EB-B1C8-FB2E1D5E3A95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UruIT.Serialization.Tests", "tests\UruIT.Serialization.Tests\UruIT.Serialization.Tests.csproj", "{953F2AFD-2562-47EF-9DBD-704CAAB8BCE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UruIT.RESTClient.Tests", "tests\UruIT.RESTClient.Tests\UruIT.RESTClient.Tests.csproj", "{5CC38B4F-0DA3-48FD-80B0-34A16654C84D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UruIT.Serialization.Mocks", "mocks\UruIT.Serialization.Mocks\UruIT.Serialization.Mocks.csproj", "{F50C1B1E-B9FF-4A8F-B1A6-31AC70A3C54D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UruIT.RESTClient.Mocks", "mocks\UruIT.RESTClient.Mocks\UruIT.RESTClient.Mocks.csproj", "{42213173-C91F-43AE-9F2C-6A268C44740B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FCBEB13-86F9-42D9-BF41-4C60F0ABE53A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FCBEB13-86F9-42D9-BF41-4C60F0ABE53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FCBEB13-86F9-42D9-BF41-4C60F0ABE53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FCBEB13-86F9-42D9-BF41-4C60F0ABE53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C08614D9-511B-40EB-B1C8-FB2E1D5E3A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C08614D9-511B-40EB-B1C8-FB2E1D5E3A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C08614D9-511B-40EB-B1C8-FB2E1D5E3A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C08614D9-511B-40EB-B1C8-FB2E1D5E3A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{953F2AFD-2562-47EF-9DBD-704CAAB8BCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953F2AFD-2562-47EF-9DBD-704CAAB8BCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953F2AFD-2562-47EF-9DBD-704CAAB8BCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953F2AFD-2562-47EF-9DBD-704CAAB8BCE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC38B4F-0DA3-48FD-80B0-34A16654C84D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC38B4F-0DA3-48FD-80B0-34A16654C84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC38B4F-0DA3-48FD-80B0-34A16654C84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC38B4F-0DA3-48FD-80B0-34A16654C84D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F50C1B1E-B9FF-4A8F-B1A6-31AC70A3C54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50C1B1E-B9FF-4A8F-B1A6-31AC70A3C54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F50C1B1E-B9FF-4A8F-B1A6-31AC70A3C54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F50C1B1E-B9FF-4A8F-B1A6-31AC70A3C54D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42213173-C91F-43AE-9F2C-6A268C44740B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42213173-C91F-43AE-9F2C-6A268C44740B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42213173-C91F-43AE-9F2C-6A268C44740B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42213173-C91F-43AE-9F2C-6A268C44740B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
