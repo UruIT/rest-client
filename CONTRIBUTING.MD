@@ -11,4 +11,5 @@ A pull request has higher chances of being accepted if it fulfills the following
 * Updates the documentation (if applicable).
 
 ## Development
-To develop new features, you need a Windows machine with .NET Framework v4.0 at minimum.
+* To develop new features, you need a Windows machine with .NET Framework v4.0 at minimum.
+* To try generating the nuget package locally, open the Nuget Package Console and execute `nuget pack .\src\UruIT.RESTClient\UruIT.RESTClient.nuspec -IncludeReferencedProjects`.
