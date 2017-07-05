@@ -4,13 +4,12 @@
     <id>UruIT.RESTClient</id>
     <version>1.0.0-alpha</version>
     <authors>gwaszczuk</authors>
-    <owners>gwaszczuk,uruit</owners>
+    <owners>gwaszczuk, uruit</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Client for calling HTTP REST APIs, mapping HTTP responses to C# types using a fluent API</description>
     <title>RESTClient</title>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>https://github.com/UruIT/rest-client</projectUrl>
-    <licenceUrl>https://github.com/UruIT/rest-client/blob/master/LICENCE.txt</licenceUrl>
+    <licenseUrl>https://github.com/UruIT/rest-client/blob/master/LICENCE.txt</licenseUrl>
     <tags>rest http api json httpclient dsl web restclient fluent</tags>
     <dependencies>
       <dependency id="csharp-monad" version="1.0.1" />

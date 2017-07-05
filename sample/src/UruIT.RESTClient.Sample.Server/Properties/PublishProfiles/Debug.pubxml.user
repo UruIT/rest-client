@@ -22,22 +22,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/17/2017 11:28:48</publishTime>
     </File>
     <File Include="bin/UruIT.RESTClient.Sample.Server.dll">
-      <publishTime>06/06/2017 12:57:45</publishTime>
+      <publishTime>07/05/2017 09:30:19</publishTime>
     </File>
     <File Include="bin/UruIT.RESTClient.Sample.Server.pdb">
-      <publishTime>06/06/2017 12:57:45</publishTime>
+      <publishTime>07/05/2017 09:30:19</publishTime>
     </File>
     <File Include="Content/nancy-logo.png">
-      <publishTime>04/17/2017 11:30:21</publishTime>
+      <publishTime>06/06/2017 16:20:45</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>04/17/2017 15:52:20</publishTime>
+      <publishTime>07/04/2017 17:16:43</publishTime>
     </File>
     <File Include="Views/index.sshtml">
-      <publishTime>04/17/2017 11:30:21</publishTime>
+      <publishTime>06/06/2017 16:20:45</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/06/2017 13:26:46</publishTime>
+      <publishTime>07/05/2017 09:30:30</publishTime>
     </File>
   </ItemGroup>
 </Project>
