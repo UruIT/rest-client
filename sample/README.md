@@ -15,6 +15,7 @@ Console application that uses RESTClient to call the sample server.
 
 ## Running it
 * Open the Visual Studio solution.
+* Restore the NuGet packages, and add the UruIT.RESTClient package (from nuget.org, or locally if you have already built it).
 * Build and Publish the server using the _Debug_ configuration.
 * Create an IIS application at port 13788, and access it at _localhost:13788_
 * Build de console application
