@@ -24,6 +24,9 @@ namespace UruIT.Serialization
         /// </summary>
         private readonly Type declaringType;
 
+        /// <summary>
+        /// Creates de property contract
+        /// </summary>
         public ChangeFieldNamePropertyContract(Type declaringType, string fieldFrom, string fieldTo)
         {
             this.declaringType = declaringType;
@@ -31,7 +34,7 @@ namespace UruIT.Serialization
             this.fieldTo = fieldTo;
         }
 
-        public Newtonsoft.Json.Serialization.JsonProperty CreateProperty(JsonProperty parentProperty, System.Reflection.MemberInfo member, MemberSerialization memberSerialization)
+        public JsonProperty CreateProperty(JsonProperty parentProperty, System.Reflection.MemberInfo member, MemberSerialization memberSerialization)
         {
             if (parentProperty.DeclaringType == declaringType)
             {

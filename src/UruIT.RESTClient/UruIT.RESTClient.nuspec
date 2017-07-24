@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UruIT.RESTClient</id>
-    <version>1.0.0-alpha</version>
+    <version>1.0.0-alpha-1-1</version>
     <authors>gwaszczuk</authors>
     <owners>gwaszczuk, uruit</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -17,4 +17,7 @@
       <dependency id="RestSharp" version="105.2.3" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\Release\UruIT.*" target="lib\net45" />
+  </files>
 </package>
