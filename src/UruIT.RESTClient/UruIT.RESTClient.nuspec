@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UruIT.RESTClient</id>
-    <version>1.0.0-alpha-1-1</version>
+    <version>1.0.0</version>
     <authors>gwaszczuk</authors>
     <owners>gwaszczuk, uruit</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
