@@ -10,35 +10,75 @@ This library uses a fluent API that is separated in 3 parts:
 * (Optional) Configures settings of the JSON serializer, both for the request body and the response body.
 * (Optional) Configures other aspects of the HTTP request, like headers, TLS certificates, etc.
 
-### Usage
+## Basic Usage
 
-An example is the following:
+We'll describe some sample usages of this library, from simple cases to more complex ones
 
-![restclient example](docs/img/restclient_example_1.png?raw=true)
+Our first example is the following:
 
-In this case, we want to call the API *http://Host/Sample/WithNotFoundAndError/* using a variable argument. Based on the returning HTTP response, we want to get a different value.
+![restclient example 1](docs/img/restclient_cat_example_get.png?raw=true)
 
-* If the api returns a *2XX* Success code, we want to deserialize the JSON body into a `OperationResult` type.
-* If the api returns a *401* Not Found code, we want to return a null type, indicating that the resource doesn't exist.
-* If the api returns a *5XX* or *4XX* status code, we want to return a value that indicates an error has occurred (without throwing an exception).
+In this case, we cant to call the API "GET http://api.catsforall.com/cats/myCatName", allowing us to search cats by name. This API returns JSON data about the cat, for example `{ "Name": "Whiskers", "Age": 5, "Lives": 9 }`, which we want to represent as the `Cat` C# type.
 
-To achieve this, we use the [Csharp-Monad](https://github.com/louthy/csharp-monad) library, using its `EitherStrict` and `OptionStrict` types (check out the library for more information about those types). We want to map 401 codes to `OptionStrict.Nothing` values, and we want to map 5XX and 4XX codes to `EitherStrict.Left` values. If we get a 200 success code, we map it to a `EitherStrict.Right` and `OptionStrict.Just`, returning a value of type `OperationResult`.
+The API is simple, it either returns a 200 status Code with the JSON body, or it returns a 4xx or 5xx status code, in which case the rest-client library throws an exception.
 
-Basically, the mapping is done this way:
+Now, what if we want to add a new cat by calling "POST http://api.catsforall.com/cats"? We do so like this:
 
-* If the HTTP response has a *4XX* or *5XX* status code, we return `EitherStrict.Left(error)`, where `error` indicates information about the error (it has the error message, whether the error was a 4XX or a 5XX one, etc).
-* If the HTTP response has a *401* status code, we return `EitherStrict.Right(OptionStrict.Nothing)`
-* If the HTTP response has a *2XX* status code, we return `EitherStrict.Right(OptionStrict.Just(operationResult))`, where `operationResult` is the data typed obtained by deserializing the JSON response body.
+![restclient example 1](docs/img/restclient_cat_example_post.png?raw=true)
 
-No matter what the API responds with, we return the user a type specifying the information he wants from the API, mapping the HTTP response to a C# type (that is composed of various types like `EitherStrict`, `OptionStrict`, etc).
+We can also do the usual PUT and DELETE calls:
 
-### Processors
+![restclient example 1](docs/img/restclient_cat_example_put.png?raw=true)
 
-To achieve this, rest-client uses a pipeline of processors that check whether they find a specific HTTP status code, and if they find it they return a value of the returning type.
+![restclient example 1](docs/img/restclient_cat_example_delete.png?raw=true)
 
-* `EitherRestErrorProcessor` returns values of type `EitherStrict<RestBusinessError, TResult>`. It checks if the response has an unsuccessful status code (one different than *2XX*). If it does, then it returns a `RestBusinessError`; if it doesn't, then it delegates the processing to the rest of the pipeline so it returns a `TResult` value.
+In the case of `DeleteCat`, we also need to pass `Unit.Default` to indicate that we don't want anything passed in the request body. If we needed to call DELETE passing a JSON object in the request body, we'd replace `Unit.Default` with the object to serialize.
+
+## Managing 404 status codes
+
+For a more complex example, imagine "GET http://api.catsforall.com/cats/myCatName" returns a _404 Not Found_ status code if the cat doesn't exist. With our current API, in that scenario we throw an exception. However, what if we want to handle that case programatically? We can do that in the following way:
+
+![restclient example 1](docs/img/restclient_cat_example_get_option.png?raw=true)
+
+The only thing that changed from the original method is the return type, which changes from `Cat` to `OptionStrict<Cat>`, and we added a line `AddProcessors(new OptionAsNotFoundProcessor<Cat>())`. 
+
+Let's talk about the change in the returning type first. `OptionStrict<T>` is a type from the [Csharp-Monad](https://github.com/louthy/csharp-monad) library, it represents a nullable type (which can be either a value type or reference type). A value with type `OptionStrict<T>` is either empty or has a value. We can use this type to represent our new method: If the API call returns a 200 status code with the JSON body, then we return a `Cat` value; however, if the API call returns a 404 status code, we return an empty value (representd by `Option<Cat>.Nothing`).
+
+To make this possible, we need to introduce processors, as we did with `AddProcessors(new OptionAsNotFoundProcessor<Cat>())`
+
+## Processors
+
+rest-client uses a pipeline of processors that check whether they find a specific HTTP status code, and if they find it they return a value of the returning type.
+
+In the above case, `OptionAsNotFoundProcessor<TResult>` is a processor that returns values of type `OptionStrict<TResult>`. It checks if a response has _404_ status code; if it does it returns `OptionStrict<TResult>.Nothing`; if it doesn't, then it delegates the processing to the rest of the pipeline, which will return a `TResult` value.
+
+In every call there is an implicit processor that returns values of type `TResult`. It checks if the response has a _2xx_ status code, and if it does it deserializes its JSON body into the expected `TResult` type. This processor is the one that is used behind the scenes in all the previous _GET_ examples we've seen.
+
+Without adding a processor like `OptionAsNotFoundProcessor<TResult>` our library would find that the HTTP response has a _404_ status code, and it won't know what to do with it. Thus, processors are a way to tell the library how to handle status code and determine what C# type it must return depending on the status code.
+
+## Managing 4xx / 5xx status codes
+
+With rest-client we can handle an even more complex subject, like managing HTTP errors with C# types. Until know, every 4xx and 5xx error was not known to our program, i.e it was not represented in the return type. Instead, if the API returned such status codes, our program thre and exception and then forgot about it. There exist cases where we want our own program to handle such errors programatically, allowing such errors to alter the control flow of our program. Using `try-catch` blocks would not be appropriate in that case, since try-catch is not the best approach for control flow.
+
+We can handle such errors by having a return type that determines if there was an error or not; if there was an error it should return specific data about the error (like an error message); if there was no error then it should return the data type we want.
+
+We use `EitherStrict<RestBusinessError, TResult>` in such case. `EitherStrict<TLeft, TRight>` is a type from the [Csharp-Monad](https://github.com/louthy/csharp-monad) library; it represents an union type, where it either has a `TLeft` value or a `TRight` value, and you can check which one is which (for example by the `bool IsLeft` and `bool IsRight` properties). In rest-client, we determine `TLeft` to be the error case, and we represent it with the `RestBusinessError` type, which is the following:
+
+![restclient example 1](docs/img/restclient_restbusinesserror.png?raw=true)
+
+`RestErrorType` is `ValidationError` when the API returned a _4xx_ status code, and `InternalError` when the API returned a _5xx_ status code. `Message` and `Details` provide additional information about the HTTP error.
+
+With such types, we can then update our previous API call with the following:
+
+![restclient example 1](docs/img/restclient_cat_example_get_either.png?raw=true)
+
+As expected, we changed the return type from `OptionStrict<Cat>` to `EitherStrict<RestBusinessError, OptionStrict<Cat>>`. 
+
+We also added a new processor, called `EitherRestErrorProcessor`. Just like with `OptionStrict`, we need to tell our library how to handle the error status codes and tell him that he should return a `RestBusinessError` value if he encounters such status codes. This is done in the following way:
+
+* `EitherRestErrorProcessor` returns values of type `EitherStrict<RestBusinessError, TResult>`. It checks if the response has an unsuccessful status code (one different than _2xx_). If it does, then it returns a `RestBusinessError`; if it doesn't, then it delegates the processing to the rest of the pipeline so it returns a `TResult` value.
 * Next comes `OptionAsNotFoundProcessor`, which returns values of type `OptionStrict<TResult>`. It checks if the response has a *401* status code. If it does, then it returns a `OptionStrict.Nothing`; if it doesn't, then it delegates the processing to the rest of the pipeline so it returns a `TResult` value.
-* Next there is an implicit processor that returns values of type `TResult`. It checks if the response has a *2XX* status code, and if it does it deserializes its JSON body into the expecting `TResult` type
+* Next, the implicit processor that returns values of type `TResult` checks if the response has a *2XX* status code. If it does then it deserializes its JSON body into the expecting `TResult` type
 
 You can compose the three processors with calls to `AddProcessors`, and in each case the type `TResult` is substituted with the resulting type of the processor next in the pipeline. This way, you can mix and match processors until you get the type you want, all you need to do is call `AddProcessors` with the corresponding processor.
 
