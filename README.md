@@ -76,7 +76,7 @@ You can use it to view the usage of this library, as well as for making tests wh
 
 ## Authors
 
-[<img alt="carloluis" src="https://avatars3.githubusercontent.com/u/6629501?v=4&s=400" width="117">](https://github.com/gonzaw) |
+[<img alt="gonzaw" src="https://avatars3.githubusercontent.com/u/6629501?v=4&s=400" width="117">](https://github.com/gonzaw) |
 :---: |
 [gonzaw](https://github.com/gonzaw) |
 
