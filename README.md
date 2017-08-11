@@ -19,9 +19,21 @@ This library uses a fluent API that is separated in three parts:
 
 An example is the following:
 
-> ![restclient example](docs/img/restclient_example_1.png?raw=true)
+```csharp
+public EitherStrict<RestBusinessError, OptionStrict<OperationResult>> WithNotFoundAndError(string argument)
+{
+    return restClient
+        .Get<EitherStrict<RestBusinessError, OptionStrict<OperationResult>>>(
+            Host, 
+            string.Format(CultureInfo.InvariantCulture, "/Sample/WithNotFoundAndError/{0}", argument)
+        )
+        .AddProcessors(new EitherRestErrorProcessor<OptionStrict<OperationResult>>().Default()
+            .AddProcessors(new OptionAsNotFoundProcessor<OperationResult>()))
+        .GetResult();
+}
+```
 
-In this case, we want to call the API *[http://Host/Sample/WithNotFoundAndError/](# "Exampple API Url")* using a variable argument. 
+In this case, we want to call the API *[http://Host/Sample/WithNotFoundAndError/](# "Example API Url")* using a variable argument. 
 Based on the returning HTTP response, we want to get a different value.
 
 * If the api returns a `2XX` *Success* code, we want to deserialize the JSON body into a `OperationResult` type.
