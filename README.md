@@ -62,6 +62,13 @@ This way, you can mix and match processors until you get the type you want, all 
 This library includes a sample application. 
 You can use it to view the usage of this library, as well as for making tests when developing or making changes to this library.
 
+## Authors
+
+[<img alt="carloluis" src="https://avatars3.githubusercontent.com/u/6629501?v=4&s=400" width="117">](https://github.com/gonzaw) |
+:---: |
+[gonzaw](https://github.com/gonzaw) |
+
+
 ## License
 
 Licensed under the MIT License, Copyright © 2017 UruIT.
