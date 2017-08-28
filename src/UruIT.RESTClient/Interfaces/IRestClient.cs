@@ -130,7 +130,7 @@ namespace UruIT.RESTClient
         /// <param name="host">Remote hose (protocol + host + port)</param>
         /// <param name="path">Relative path of the resource</param>
         /// <param name="data">Data to send in the body of the request</param>
-        public static Unit PostSyncUnit<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
+        public static Unit Post<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
             where TSerializer : ISerializer
         {
             return client.Post<Unit>(host, path, data)
@@ -145,7 +145,7 @@ namespace UruIT.RESTClient
         /// <param name="host">Remote hose (protocol + host + port)</param>
         /// <param name="path">Relative path of the resource</param>
         /// <param name="data">Data to send in the body of the request</param>
-        public static Unit PutSyncUnit<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
+        public static Unit Put<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
             where TSerializer : ISerializer
         {
             return client.Put<Unit>(host, path, data)
@@ -159,11 +159,10 @@ namespace UruIT.RESTClient
         /// <param name="client">Cliente REST</param>
         /// <param name="host">Remote hose (protocol + host + port)</param>
         /// <param name="path">Relative path of the resource</param>
-        /// <param name="data">Data to send in the body of the request</param>
-        public static Unit DeleteSyncUnit<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
+        public static Unit Delete<TSerializer>(this IRestClient<TSerializer> client, string host, string path)
             where TSerializer : ISerializer
         {
-            return client.Delete<Unit>(host, path, data)
+            return client.Delete<Unit>(host, path, Unit.Default)
                 .AddProcessors(new UnitAsSuccessProcessor<TSerializer>())
                 .GetResult();
         }
