@@ -1,14 +1,20 @@
 # rest-client
 
 Rest Client is a C# library that allows you to consume an HTTP REST service, mapping HTTP response codes to different C# types allowing you full control over what you expect when calling such service.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/UruIT/rest-client.svg)](https://github.com/UruIT/rest-client/stargazers)
+
+
+__Rest Client__ is a C# library that allows you to consume an _HTTP REST service_, mapping _HTTP_ response codes to different C# types allowing you full control over what you expect when calling such service.
 
 ## Description
 
-This library uses a fluent API that is separated in 3 parts:
+This library uses a fluent API that is separated in three parts:
+
 * Specifies the HTTP method, host, resource and optionally the body (passing in a C# object).
 * Sets up a pipeline of processors that process the response in sequence, building the return type incrementally and compositionally.
 * (Optional) Configures settings of the JSON serializer, both for the request body and the response body.
-* (Optional) Configures other aspects of the HTTP request, like headers, TLS certificates, etc.
+* (Optional) Configures other aspects of the HTTP request like headers, TLS certificates, etc.
 
 ## Basic Usage
 
@@ -83,4 +89,19 @@ We also added a new processor, called `EitherRestErrorProcessor`. Just like with
 You can compose the three processors with calls to `AddProcessors`, and in each case the type `TResult` is substituted with the resulting type of the processor next in the pipeline. This way, you can mix and match processors until you get the type you want, all you need to do is call `AddProcessors` with the corresponding processor.
 
 ## Sample
-This library includes a sample application. You can use it to view the usage of this library, as well as for making tests when developing or making changes to this library.
+
+This library includes a sample application. 
+You can use it to view the usage of this library, as well as for making tests when developing or making changes to this library.
+
+## Authors
+
+[<img alt="gonzaw" src="https://avatars3.githubusercontent.com/u/6629501?v=4&s=400" width="117">](https://github.com/gonzaw) |
+:---: |
+[gonzaw](https://github.com/gonzaw) |
+
+
+## License
+
+Licensed under the MIT License, Copyright © 2017 UruIT.
+
+See [LICENSE](./LICENSE.txt) for more information.
