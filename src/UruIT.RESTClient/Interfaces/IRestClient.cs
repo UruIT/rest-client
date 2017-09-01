@@ -127,10 +127,10 @@ namespace UruIT.RESTClient
         /// Makes a POST request synchronously, returning unit.
         /// </summary>
         /// <param name="client">REST Client</param>
-        /// <param name="host">Remote hose (protocol + host + port)</param>
+        /// <param name="host">Remote host (protocol + host + port)</param>
         /// <param name="path">Relative path of the resource</param>
         /// <param name="data">Data to send in the body of the request</param>
-        public static Unit Post<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
+        public static Unit PostDefault<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
             where TSerializer : ISerializer
         {
             return client.Post<Unit>(host, path, data)
@@ -142,10 +142,10 @@ namespace UruIT.RESTClient
         /// Makes a PUT request synchronously, returning unit.
         /// </summary>
         /// <param name="client">Cliente REST</param>
-        /// <param name="host">Remote hose (protocol + host + port)</param>
+        /// <param name="host">Remote host (protocol + host + port)</param>
         /// <param name="path">Relative path of the resource</param>
         /// <param name="data">Data to send in the body of the request</param>
-        public static Unit Put<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
+        public static Unit PutDefault<TSerializer>(this IRestClient<TSerializer> client, string host, string path, object data)
             where TSerializer : ISerializer
         {
             return client.Put<Unit>(host, path, data)
@@ -157,9 +157,9 @@ namespace UruIT.RESTClient
         /// Makes a DELETE request synchronously, returning unit.
         /// </summary>
         /// <param name="client">Cliente REST</param>
-        /// <param name="host">Remote hose (protocol + host + port)</param>
+        /// <param name="host">Remote host (protocol + host + port)</param>
         /// <param name="path">Relative path of the resource</param>
-        public static Unit Delete<TSerializer>(this IRestClient<TSerializer> client, string host, string path)
+        public static Unit DeleteDefault<TSerializer>(this IRestClient<TSerializer> client, string host, string path)
             where TSerializer : ISerializer
         {
             return client.Delete<Unit>(host, path, Unit.Default)
