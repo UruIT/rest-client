@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,12 +52,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UruIT.RESTClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UruIT.RESTClient.1.0.0-alpha-1-1\lib\net45\UruIT.RESTClient.dll</HintPath>
-    </Reference>
-    <Reference Include="UruIT.Serialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UruIT.RESTClient.1.0.0-alpha-1-1\lib\net45\UruIT.Serialization.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandOptions.cs" />
@@ -68,6 +63,16 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\UruIT.RESTClient\UruIT.RESTClient.csproj">
+      <Project>{c08614d9-511b-40eb-b1c8-fb2e1d5e3a95}</Project>
+      <Name>UruIT.RESTClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\UruIT.Serialization\UruIT.Serialization.csproj">
+      <Project>{0fcbeb13-86f9-42d9-bf41-4c60f0abe53a}</Project>
+      <Name>UruIT.Serialization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -30,7 +30,7 @@ namespace UruIT.RESTClient.Sample.Console
                 .Post<EitherStrict<RestBusinessError, Unit>>(Host, string.Format(CultureInfo.InvariantCulture, "/Sample/NoContentWithError/{0}", argument), Unit.Default)
                 .AddProcessors(new EitherRestErrorProcessor<Unit>().Default()
                     .AddProcessors(new UnitAsSuccessProcessor()))
-                .GetResult();
+                .GetResult();            
         }
     }
 }
